@@ -1,54 +1,68 @@
-# File Encryption/Decryption Tool
+# Labirynt (Maze Solver/Generator)
 
-A Python script for encrypting and decrypting files using AES encryption with Fernet. Supports password-based encryption and dictionary-based brute-force decryption.
+A Python project for generating and solving mazes. Includes algorithms for maze creation (e.g., recursive backtracking, Kruskal's) and pathfinding (e.g., A*, DFS, BFS).
 
 ## Features
-- 🔒 **Encrypt files** with a password using PBKDF2 key derivation
-- 🔓 **Decrypt files** with the correct password
-- 🗝️ **Dictionary attack** to brute-force decrypt files using a list of potential passwords
-- 🔐 Secure salt storage (saved with encrypted files for proper decryption)
 
-## Installation
-1. Ensure **Python 3.x** is installed.
-2. Install the required library:
-   ```bash
-   pip install cryptography
+- **Maze Generation**: Create mazes using different algorithms.
+- **Maze Solving**: Solve mazes with pathfinding algorithms.
+- **Visualization**: Visualize maze generation and solving in real-time (e.g., using Pygame or Tkinter).
+- **Customization**: Adjust maze size, algorithm speed, and display options.
+
+## Requirements
+
+- Python 3.x
+- Dependencies (if applicable):
+  ```bash
+  pip install pygame numpy
 Usage
-Copy
-python3 skrypt.py [OPTIONS] [ARGUMENTS]
-Options
-Option	Description
--h, --help	Show help message
--s	Encrypt a file
--o	Decrypt a file using a password dictionary
-Examples
-1. Encrypt a File
+Running the Project
+Clone the repository:
 
 bash
 Copy
-python3 skrypt.py -s input.txt encrypted.txt "myStrongPassword"
-Encrypts input.txt into encrypted.txt using the password "myStrongPassword".
-
-2. Decrypt with a Password Dictionary
+git clone https://github.com/poprostuoskar6/Labirynt.git
+cd Labirynt
+Run the main script:
 
 bash
 Copy
-python3 skrypt.py -o encrypted.txt decrypted.txt passwords.txt
-Attempts to decrypt encrypted.txt using passwords from passwords.txt (one password per line).
+python3 main.py
+Command-Line Options
+--size <rows>x<cols>: Set maze dimensions (e.g., --size 20x20).
 
-Security Notes
-🔑 Password Strength: Use a strong password for encryption. Weak passwords may be cracked by dictionary attacks.
+--algorithm <name>: Choose generation/solving algorithm (e.g., --algorithm dfs).
 
-🔧 PBKDF2: Key derivation uses 100,000 iterations of SHA-256 to slow brute-force attacks.
+--visualize: Enable real-time visualization.
 
-⚠️ Dictionary Files: For decryption (-o), ensure the dictionary file is a text file with one password per line (encoded in latin-1).
+Example
+Generate a 15x15 maze using recursive backtracking and solve it with A*:
 
-Contribution
-Feel free to create issues and PRs (pull requests) to improve this tool - any help is appreciated!
+bash
+Copy
+python3 main.py --size 15x15 --algorithm recursive_backtracking --solve a_star --visualize
+Project Structure
+Copy
+Labirynt/
+├── main.py            # Main entry point
+├── maze_generator.py  # Maze generation logic
+├── maze_solver.py     # Pathfinding algorithms
+├── visualizer.py      # Visualization module
+└── README.md          # Documentation
+Contributing
+Feel free to submit issues or pull requests. To add a new algorithm:
+
+Fork the repository.
+
+Implement your algorithm in a new module.
+
+Update main.py to include your method.
 
 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See LICENSE for details.
 
 Copy
 
-This is the complete `README.md` file in the requested format. You can copy and paste it directly into your project.
+---
+
+If you provide details about your specific implementation (e.g., algorithms used, dependencies, or features), I can refine this further. Let me know!
