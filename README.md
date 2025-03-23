@@ -1,68 +1,58 @@
-# Labirynt (Maze Solver/Generator)
+File Encryption and Decryption Script
 
-A Python project for generating and solving mazes. Includes algorithms for maze creation (e.g., recursive backtracking, Kruskal's) and pathfinding (e.g., A*, DFS, BFS).
+This script provides functionality to encrypt and decrypt files using a password. It uses the cryptography library to handle encryption and decryption processes.
 
-## Features
+Features
 
-- **Maze Generation**: Create mazes using different algorithms.
-- **Maze Solving**: Solve mazes with pathfinding algorithms.
-- **Visualization**: Visualize maze generation and solving in real-time (e.g., using Pygame or Tkinter).
-- **Customization**: Adjust maze size, algorithm speed, and display options.
+- Encrypt a File: Encrypts a given file using a password.
+- Decrypt a File: Decrypts a given file using a password.
+- Dictionary Attack: Attempts to decrypt a file using a dictionary of passwords.
 
-## Requirements
+Requirements
 
 - Python 3.x
-- Dependencies (if applicable):
-  ```bash
-  pip install pygame numpy
+- cryptography library (install via pip install cryptography)
+
 Usage
-Running the Project
-Clone the repository:
 
-bash
-Copy
-git clone https://github.com/poprostuoskar6/Labirynt.git
-cd Labirynt
-Run the main script:
+Help
 
-bash
-Copy
-python3 main.py
-Command-Line Options
---size <rows>x<cols>: Set maze dimensions (e.g., --size 20x20).
+To display the usage instructions, run:
 
---algorithm <name>: Choose generation/solving algorithm (e.g., --algorithm dfs).
+python3 skrypt.py --help
 
---visualize: Enable real-time visualization.
+Encrypt a File
 
-Example
-Generate a 15x15 maze using recursive backtracking and solve it with A*:
+To encrypt a file, use the -s option followed by the input file, output file, and password:
 
-bash
-Copy
-python3 main.py --size 15x15 --algorithm recursive_backtracking --solve a_star --visualize
-Project Structure
-Copy
-Labirynt/
-├── main.py            # Main entry point
-├── maze_generator.py  # Maze generation logic
-├── maze_solver.py     # Pathfinding algorithms
-├── visualizer.py      # Visualization module
-└── README.md          # Documentation
-Contributing
-Feel free to submit issues or pull requests. To add a new algorithm:
+python3 skrypt.py -s <input_file> <output_file> <password>
 
-Fork the repository.
+<input_file>: The file to be encrypted.
+<output_file>: The name of the resulting encrypted file.
+<password>: The password to use for encryption.
 
-Implement your algorithm in a new module.
+Example:
 
-Update main.py to include your method.
+python3 skrypt.py -s plik.txt zaszyfrowany.txt mojehaslo
 
-License
-This project is licensed under the MIT License. See LICENSE for details.
+Decrypt a File Using a Dictionary
 
-Copy
+To decrypt a file using a dictionary of passwords, use the -o option followed by the input file, output file, and dictionary file:
 
----
+python3 skrypt.py -o <input_file> <output_file> <dictionary_file>
 
-If you provide details about your specific implementation (e.g., algorithms used, dependencies, or features), I can refine this further. Let me know!
+<input_file>: The file to be decrypted.
+<output_file>: The name of the resulting decrypted file.
+<dictionary_file>: The path to the dictionary file containing passwords.
+
+Example:
+
+python3 skrypt.py -o zaszyfrowany.txt odszyfrowany.txt slownik.txt
+
+Functions
+
+- generuj_klucz(haslo: str, sol: bytes) -> bytes: Generates an encryption key based on a password and salt.
+- szyfruj_plik(plik_wejsciowy: str, plik_wyjsciowy: str, haslo: str) -> None: Encrypts a file using a given password.
+- odszyfruj_plik(plik_wejsciowy: str, plik_wyjsciowy: str, haslo: str) -> None: Decrypts a file using a given password.
+- odszyfruj_plik_slownik(plik_wejsciowy: str, plik_wyjsciowy: str, slownik: str) -> bool: Attempts to decrypt a file using a dictionary of passwords.
+- wyswietl_pomoc(): Displays the usage instructions.
